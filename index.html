@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Za Jelenu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #483285;
+            font-family: 'Parisienne', cursive;
+            margin: 0;
+            padding: 0;
+            color: white;
+            overflow: hidden;
+        }
+
+        #letter {
+            font-size: 24px;
+            line-height: 1.5;
+            text-align: center;
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            /* Added a more restrictive max-width */
+            padding: 0 20px;
+            /* Increased padding to prevent text from touching the screen edge */
+            box-sizing: border-box;
+            /* Ensures padding doesn't cause overflow */
+            height: auto;
+        }
+
+        .line {
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            transition: opacity 0.5s ease;
+        }
+
+        .line.visible {
+            opacity: 1;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <div id="letter" style="display: none;"></div>
+
+    <script>
+        // Password protection
+        const password = "jelena123";
+        const userPassword = prompt("Enter the password to view this message:");
+        if (userPassword !== password) {
+            alert("Incorrect password. Access denied.");
+            window.location.reload(); // Reload the page on incorrect password
+        } else {
+            document.getElementById('letter').style.display = 'block'; // Show the content if password is correct
+
+            const letter = [
+                "Jelena,",
+                "Ovo što vidiš je moj način da ti se zahvalim.",
+                "Da ti kažem koliko te volim, koliko mi beskrajno značiš.",
+                "Toliko si mi puta pokazala sta je ljubav i šta znači kad voliš nekoga...",
+                "Ja mogu samo da budem zahvalan, beskrajno, što si moja a ne nečija tuđa.",
+                "Svaki momenat proveden sa tobom bio je prelijep,",
+                "a svaki momenat bez tebe je bio isto toliko ružan.",
+
+                "Puno puta sam se zapitao hoćemo li uspjeti, brinuo sam.",
+                "Bio ljut na život što mi je dao najljepšu stvar na svijetu koju ne mogu da imam kad poželim.",
+                "Shvatio sam poslije tri mjeseca čekanja da svi ti dani išcekivanja se istope u zaborav kad te vidim,",
+                "da sve to zaboravim tako brzo i imam osjećaj kao da sam te ostavio juče.",
+                "Nikad ništa nisam želio kao što želim tebe.",
+                "Sve naše rasprave i svađe nastaju iz toga,",
+                "ne zato što se hladim već što mi je svakog dana sve više stalo da te imam...",
+
+                "Želim da ti se zahvalim, za svaki put kada si bila tu uz mene.",
+                "Za svaki put kada si me podržavala i bodrila.",
+                "Kada si mi bila jedina i najveća podrška, kada niko drugi nie bio tu uz mene.",
+                "Tu si bila ti. Uvjek.",
+
+                "Sjećaš li se kada sam rekao kako bi želio da zaustavim vrijeme kad sam sa tobom,",
+                "da nekako uhvatim taj savršeni momenat i da ga imam zauvjek?",
+                "E pa mislim da sam u tome uspio, da sam uspio da uhvatim tri najljepša momenta moga života i sačuvam ih od vremena.",
+                "Gledaj..."
+            ];
+
+            const letterDiv = document.getElementById('letter');
+
+            let lineIndex = 0;
+
+            function displayLine() {
+                if (lineIndex < letter.length) {
+                    const lineDiv = document.createElement('div');
+                    lineDiv.className = 'line';
+                    lineDiv.innerText = letter[lineIndex];
+                    letterDiv.appendChild(lineDiv);
+
+                    setTimeout(() => {
+                        lineDiv.classList.add('visible');
+                    }, 100);
+
+                    const lineLength = letter[lineIndex].length;
+                    const delay = lineLength > 60 ? 10000 : (lineLength > 30 ? 8000 : 6000);
+
+                    setTimeout(() => {
+                        lineDiv.classList.remove('visible');
+                    }, delay - 1000);
+
+                    lineIndex++;
+                    setTimeout(displayLine, delay);
+                } else {
+                    setTimeout(() => {
+                        window.location.href = "https://xet654.github.io/starmap/";
+                    }, 2000);
+                }
+            }
+
+            setTimeout(displayLine, 6000);
+        }
+    </script>
+
+</body>
+
+</html>
